@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th = "http://www.thymeleaf.org" xmlns:layout="http://www.utraq.net.nzthymeleaf/layout">
+	<th:block th:insert="~{base  :: header(title = 'текст')}" />
+	<body th:insert="~{base :: body(content=~{::content})}">
+		<main style="border:1px solid;" class="container" th:fragment="content">
+			<div class="container text-center">
+	  			<div class="row row-cols-6">
+		  			<div class="col">
+		  				<label th:text="#{item.label}">Назва</label>
+		  			</div>
+		  			<div class="col">
+		  				<label th:text="#{item.description}">Опис</label>
+		  			</div>
+		  			<div class="col">
+						<label th:text="#{item.price}">Ціна</label>
+					</div>
+					<div class="col">
+						<label th:text="#{item.category}">Категорія</label>
+					</div>
+					<div class="col">
+						<label th:text="#{item.state}">Активність</label>
+					</div>
+					<div class="col">
+						<label th:text="#{item.sale}">Знижка</label>
+					</div>
+		  		</div>
+		  	</div>
+			<div class="container text-center">
+  				<div class="row row-cols-6">
+	  				<div class="col">
+						<a th:href = "@{/product/edit(id = ${product.id})}"><span th:text = "${product.label}"></span></a>
+					</div>
+					<div class="col">
+						<p th:text = "${product.description}"></p>
+					</div>
+					<div class="col">
+						<span th:text = "${product.price}"></span>
+					</div>
+					<div class="col">
+						<span th:text = "${(product.category!=null) ? product.category.label : ''}"></span>
+					</div>
+					<div class="col">
+						<span th:text = "${product.state}"></span>
+					</div>
+					<div class="col">
+						<span th:text = "${product.sale}"></span>
+					</div>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>

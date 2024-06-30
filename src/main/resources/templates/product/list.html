@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th = "http://www.thymeleaf.org" xmlns:layout="http://www.utraq.net.nzthymeleaf/layout">
+	<th:block th:insert="~{base  :: header(title = 'текст')}" />
+	<body th:insert="~{base :: body(content=~{::content})}">
+		<main>
+			<div class="container" th:fragment="content">
+				<th:block th:insert="~{product/info :: content}" th:each="product : ${products}"></th:block>
+			</div>
+		</main>
+	</body>
+</html>

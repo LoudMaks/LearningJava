@@ -1,0 +1,26 @@
+<!DOCTYPE html!>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th = "http://www.thymeleaf.org" xmlns:layout="http://www.utraq.net.nzthymeleaf/layout">
+	<th:block th:insert="~{base  :: header(title = 'текст')}" />
+	<body th:insert="~{base :: body(content=~{::content})}">
+		<div class = "container" th:fragment="content">
+			<form method="post">
+				<div class="mb-3">
+				  <label for="label" class="form-label" th:text="#{item.label}">Назва</label>
+				  <input type="text" class="form-control" id="label" name = "label" placeholder="Назва">
+				</div>
+				<div class="mb-3">
+				  <label for="description" class="form-label" th:text="#{item.description}">Опис</label>
+				  <textarea class="form-control" id="description" name = "description" rows="3"></textarea>
+				</div>
+				<div class = "mb-3">
+					<label class = "form-label" for = "parenrCategory" th:text="#{item.parentCategory}">Батьківська категорія</label>
+					<select class="form-select" aria-label="Default select example">
+					  <option selected value="" th:text="#{item.none}">Немає</option>
+					  <option th:each="item : ${categories}" th:value="${item.id}" th:text="${item.label}">
+					</select>
+				</div>
+			<button type="submit" class="btn btn-dark" th:text="#{item.submit}">Створити</button>
+			</form>
+		</div>
+	</body>
+</html>

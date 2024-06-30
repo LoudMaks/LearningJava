@@ -1,0 +1,15 @@
+<!DOCTYPE html!>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th = "http://www.thymeleaf.org" xmlns:layout="http://www.utraq.net.nzthymeleaf/layout">
+	<th:block th:insert="~{base  :: header(title = 'текст')}" />
+	<body th:insert="~{base :: body(content=~{::content})}">
+		<main th:fragment="content">
+			<form method = "post" class="container">
+				<div class="mb-3">
+					<label for="label" class="form-label" th:text="#{item.label}">Назва</label><br>
+					<input type = "text" name = "label" id="label"><br>
+					<button type = "submit" class="btn btn-dark" th:text="#{item.submit}">Підтвердити</button>
+				</div>
+			</form>
+		</main>
+	</body>
+</html>

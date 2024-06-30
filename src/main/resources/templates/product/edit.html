@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th = "http://www.thymeleaf.org" xmlns:layout="http://www.utraq.net.nzthymeleaf/layout">
+	<head th:fragment = "header(title)">
+		<title th:text = ${title}></title>
+		<link href = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel = "stylesheet"/>
+		<script src = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	</head>
+	<th:block th:insert="~{base :: header(title)}" />
+	<body th:insert="~{base :: body(content=~{::content})}">
+		<main class="container" th:fragment="content">
+			<form method = "post"><input type="hidden" name="_method" value="put">
+				<div class="mb-3">
+	  				<label for="label" class="form-label" th:text="#{item.label}">Назва</label>
+	  				<input th:value="${product.label}" type="text" class="form-control" id="label" name = "label" th:placeholder="#{product.label.ph}">
+				</div>
+				<div class="mb-3">
+ 					 <label for="description" class="form-label" th:text="#{item.description}">Опис</label>
+ 					 <textarea th:text="${product.description}" class="form-control" id="description" name = "description" rows="3"></textarea>
+				</div>
+				<div class="mb-3">
+	  				<label for="price" class="form-label" th:text="#{item.price}">Ціна</label>
+	  				<input th:value="${product.price}" type="number" class="form-control" id="price" name = "price" th:placeholder="#{product.price.ph}">
+				</div>
+				<div class = "mb-3">
+					<label for="category" class="form-label" th:text="#{item.category}">Категорія</label>
+					<select class="form-select" name = "category" aria-label="Default select example">
+					  <option value="" selected>Вибір категорії</option>
+					  <option th:each="category : ${categories}" th:value = "${category.id}" th:text = "${category.label}"></option>
+					</select>
+				</div>
+				<div class = "mb-3">
+					<label for="state" class="form-label" th:text="#{item.state}">Активність</label>
+					<select class="form-select" name = "state" aria-label="Default select example">
+					  <option value="" selected>Вибір активності</option>
+					  <option th:each="state : ${T(com.example.demo.product.State).values()}" th:value = "${state}" th:text = "${state}"></option>
+					</select>
+				</div>
+				<div class="mb-3">
+	  				<label for="sale" class="form-label" th:text="#{item.sale}">Знижка</label>
+	  				<input th:value="${product.sale}" type="number" class="form-control" id="sale" name = "sale" value = "0" min = "0" max = "100" step = "0.01">
+				</div>
+				<button type="submit" class="btn btn-dark" th:text="#{item.change}">Змінити</button>
+			</form>
+		</main>
+	</body>
+</html>
